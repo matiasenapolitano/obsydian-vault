@@ -670,3 +670,125 @@ sum(1,4)
 ```
 
 ==🟡ARROW FUNCTIONS== 
+
+Las arrow function son una version mas simplificada de las funciones. Deben usar camelCase y verbos para nombrar funciones, siempre son function expressions y anonimas dado que se asignan en una variable y no tienen nombre.
+
+```
+const nombrarFuncion = () => {
+el codigo a ejecutar
+}
+```
+
+Se pueden simplificar las funciones que son cortas utilizando el return implicito
+```
+const sumar = (a, b) => a + b
+```
+
+RECURSIVIDAD
+
+Es una tecnica de programacion que consiste en que una funcion se llame a si misma directa o indirectamente. 
+
+````
+function cuentaAtras(a) {
+if numero < 0 {return}
+console.log(a)
+cuentaAtras(a - 1)
+}
+````
+
+CLAUSURES
+
+Esto se da cuando una funcion recuerda una variable que esta dentro de su scope padre mas alla de que ya se haya ejecutado. Es basicamente acceder al scope externo desde una funcion interna. 
+
+````
+function saludar(saludo) {
+  return function elegirNombre(nombre) {
+    return saludo + nombre;
+  };
+}
+const saludarEspañol = saludar("Hola, ");
+console.log(saludarEspañol("Matias"));
+````
+
+Al ejecutar saludar("Hola, "), la función saludar retorna la función interna elegirNombre. La constante saludarEspañol guarda esa función interna junto con su 'mochila', que contiene la variable saludo con el valor "Hola, ". Si al ejecutar saludarEspañol() no le pasamos el argumento nombre, mostrará "Hola, undefined" porque le faltaría ese dato.
+
+La funcion hijo guarda en su mochila el argumento de la funcion padre.
+
+ARRAYS
+
+Los arrays son una coleccion de elementos, esta coleccion dentro puede tener cualquier tipo de elemento ya sea del mismo o mezclado, incluso otro mismo array . Para acceder/apuntar a cada uno de estos distintos elementos se debe seleccionar su posicion siendo 0 la primer posicion.
+
+````
+[elemento,elemento,elemento,[array dentro de array]]
+const numbers = [1,2,3]
+
+const textos = [0, "hola", 46];
+console.log(textos[2]); // muestra en consola el 46 no el "hola"
+````
+
+Un array es declarado como constante, pero sus elementos si pueden cambiar, dado que lo que esta declarado como constante es el array en si, no sus elementos internos. 
+
+````
+const numbers = [1,2,3]
+numbers[0] = 456 // cambiaria el 1 por el 456
+````
+
+Metodos basicos
+```
+- numbers.length // Cuenta la cantidad de elementos que tiene
+- numbers.length = 2 // deja solo los 2 primeros elementos
+- numbers.push(elemento) // agrega 1 elemento al array y devuelve la longitud
+- numbers.pop() // elimina el ultimo elemento del array y lo devuelve
+- numbers.shift() // elimina el primer elemento del array y lo devuelve
+- numbers.unshift(elemento) // pone un elemento primero
+- numbers.indexOf(elemento) // devuelve la posicion del elemento
+- numbers.includes(elemento) // devuelve T o F si existe o no el elemento en el array
+- numbers.concat(otroarray) // une 2 arrays en 1 
+  const nuevoArray = [...array1, ...array2] // une x cantidad de arrays
+- numbers.reverse() // invierte el orden de los elementos
+- numbers.join(separador) // convierte  en 1 string separados con el separador indicado
+- numbers.splice(y, x, z1, z2, z3 ) // elimina X cantidad de lementos desde Y indice, agregar Z elementos. Se puede solo agregar o solo eliminar o ambas.
+- numbers.slice(x,y) // crea una copia del array desde el indice x hasta el y-1
+- Array.isArray(numbers) // T o F si es un array (typeoff devuelve object)
+- numbers[posicion] // te devuelve el elemento de esa posicion
+- numbers.at(-1) // te devuelve el elemento en esa posicion empezando desde atras
+```
+
+Metodos para recorrer un Array
+
+````
+let numbers[1,2,3,4];
+let i = 0;
+
+while (i < numbers.length) {
+console.log(numbers[i])
+i++
+}
+
+for (let i=0,i < numbers.lenght; i++)
+{console.log(numbers[i])}
+
+for (const numero of numeros) {
+console.log(numero)
+}
+
+numeros.forEach(function (el, index) {
+console.log('index: '+ index)
+console.log(el)
+})
+
+numeros.forEach(el => {console.log(el)})
+````
+
+Metodos para ordenar un Array
+
+```
+numeros.sort() // lo ordena pasandolo a cuanto vale el numero en string, lo cual esta raro. 
+
+numeros.sort((a,b) => a-b) // MENOR A MAYOR
+numeros.sort((a,b) => b-a) //  MAYOR A MENOR
+
+numerosOrdenadosSpread = [...numeros] // luego se ordena con sort el nuevo array y no modifica el original.
+
+numeroOrdenados = numeros.toSorted((a,b) => a-b) // Devuelve un nuevo array con los numeros ordenados de menor a mayor, no tiene mucho soporte en navegadores. 
+```
